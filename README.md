@@ -2,9 +2,10 @@
 
 Responsive, accessible task management UI built with **Angular 17+ ** and **PrimeNG** featuring AI-powered task assistance, dark mode, local persistence, and full CRUD operations.
 
-🔗 **Live Demo:** [https://task-dashboard-3azg.vercel.app/](https://task-dashboard-3azg.vercel.app/)
+## 🚀 Live Demo
+[Click here to view the Task Dashboard](https://task-dashboard-3azg-58tg0o6a6-sharmila-task-dashboard.vercel.app)
 
----
+--
 
 ## 🚀 Setup Instructions
 
