@@ -1,0 +1,102 @@
+<section class="task-list-panel" aria-label="Task list">
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="search-wrap">
+      <label for="task-search" class="sr-only">Search tasks</label>
+      <span class="p-input-icon-left search-field">
+        <i class="pi pi-search" aria-hidden="true"></i>
+        <input
+          id="task-search"
+          type="search"
+          pInputText
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="applyFilters()"
+          placeholder="Search tasks or assignees..."
+          class="w-full"
+          aria-label="Search tasks"
+        />
+      </span>
+      <button
+        *ngIf="searchQuery"
+        pButton pRipple
+        icon="pi pi-times"
+        class="p-button-rounded p-button-text p-button-sm clear-btn"
+        (click)="clearSearch()"
+        aria-label="Clear search"
+      ></button>
+    </div>
+
+    <div class="filter-row">
+      <div class="filter-group">
+        <label for="status-filter" class="filter-label">Filter by Status</label>
+        <p-dropdown
+          inputId="status-filter"
+          [options]="statusOptions"
+          [(ngModel)]="selectedStatus"
+          (ngModelChange)="applyFilters()"
+          styleClass="filter-dropdown"
+        ></p-dropdown>
+      </div>
+      <div class="filter-group">
+        <label for="sort-by" class="filter-label">Sort by</label>
+        <p-dropdown
+          inputId="sort-by"
+          [options]="sortOptions"
+          [(ngModel)]="sortBy"
+          (ngModelChange)="applyFilters()"
+          styleClass="filter-dropdown"
+        ></p-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <!-- Count bar -->
+  <div class="count-bar" aria-live="polite" aria-atomic="true">
+    <h2 class="list-heading">Your Tasks</h2>
+    <span class="task-count">
+      {{ totalItems }} total • Page {{ pageIndex + 1 }} of {{ totalPages }}
+    </span>
+  </div>
+
+  <!-- Grid -->
+  <div
+    *ngIf="pagedTasks.length > 0; else empty"
+    class="task-grid"
+    role="list"
+    aria-label="Task cards"
+  >
+    <app-task-card
+      *ngFor="let task of pagedTasks; trackBy: trackById"
+      [task]="task"
+      role="listitem"
+      (edit)="editTask.emit($event)"
+      (delete)="deleteTask.emit($event)"
+    ></app-task-card>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-row" *ngIf="totalItems > pageSize">
+    <p-paginator
+      [rows]="pageSize"
+      [first]="pageIndex * pageSize"
+      [totalRecords]="totalItems"
+      (onPageChange)="onPageChange($event)"
+      [rowsPerPageOptions]="[6,12,18,24]"
+      styleClass="task-paginator"
+      aria-label="Task list pagination"
+    ></p-paginator>
+  </div>
+
+
+  <!-- Empty state -->
+  <ng-template #empty>
+    <div class="empty-state" role="status" aria-label="No tasks found">
+      <div class="empty-icon" aria-hidden="true">
+        <i class="pi pi-inbox"></i>
+        <i class="pi pi-plus empty-plus"></i>
+      </div>
+      <h3>No tasks found</h3>
+      <p>Try adjusting your search or filters, or add a new task.</p>
+    </div>
+  </ng-template>
+</section>

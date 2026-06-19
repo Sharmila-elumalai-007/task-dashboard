@@ -1,0 +1,60 @@
+<article
+  class="task-card"
+  [class.overdue]="isOverdue"
+  [class.completed]="task.status === 'Completed'"
+  [attr.aria-label]="task.title + ', ' + task.status + ', ' + task.priority + ' priority'"
+>
+  <div class="card-top">
+    <div class="badges">
+      <p-tag
+        [value]="task.priority"
+        [severity]="prioritySeverity"
+        styleClass="priority-tag"
+      ></p-tag>
+      <p-tag
+        [value]="task.status"
+        [severity]="statusSeverity"
+        styleClass="status-tag"
+      ></p-tag>
+      <span *ngIf="isOverdue" class="overdue-badge" role="img" aria-label="Overdue">
+        <i class="pi pi-exclamation-circle" aria-hidden="true"></i> Overdue
+      </span>
+    </div>
+
+    <div class="card-actions">
+      <button
+        pButton pRipple
+        icon="pi pi-pencil"
+        class="p-button-rounded p-button-text p-button-sm action-btn edit-btn"
+        (click)="edit.emit(task)"
+        [pTooltip]="'Edit task'"
+        tooltipPosition="top"
+        aria-label="Edit task"
+      ></button>
+      <button
+        pButton pRipple
+        icon="pi pi-trash"
+        class="p-button-rounded p-button-text p-button-sm action-btn delete-btn"
+        (click)="delete.emit(task.id)"
+        [pTooltip]="'Delete task'"
+        tooltipPosition="top"
+        aria-label="Delete task"
+      ></button>
+    </div>
+  </div>
+
+  <h3 class="card-title">{{ task.title }}</h3>
+
+  <p *ngIf="task.description" class="card-description">{{ task.description }}</p>
+
+  <div class="card-footer">
+    <div class="assignee">
+      <span class="avatar" aria-hidden="true">{{ avatarInitials }}</span>
+      <span class="assignee-name">{{ task.assignee }}</span>
+    </div>
+    <div class="due-date" [class.past]="isOverdue">
+      <i class="pi pi-calendar" aria-hidden="true"></i>
+      <time [dateTime]="task.dueDate">{{ task.dueDate }}</time>
+    </div>
+  </div>
+</article>

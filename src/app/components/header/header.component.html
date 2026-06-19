@@ -1,0 +1,31 @@
+<header class="app-header" role="banner">
+  <div class="header-content">
+    <div class="brand">
+      <div class="brand-icon" aria-hidden="true">
+        <i class="pi pi-check-square"></i>
+      </div>
+      <div class="brand-text">
+        <span class="brand-label">TEAM WORKSPACE</span>
+        <h1 class="brand-title">Task Dashboard</h1>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <p class="brand-subtitle">Manage and track your team's tasks in one place</p>
+
+
+
+      <button
+        pButton
+        pRipple
+        [icon]="(isDark$ | async) ? 'pi pi-sun' : 'pi pi-moon'"
+        class="p-button-rounded p-button-text theme-toggle"
+        [pTooltip]="(isDark$ | async) ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        tooltipPosition="bottom"
+        (click)="toggleTheme()"
+        [attr.aria-label]="(isDark$ | async) ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+      ></button>
+    </div>
+
+  </div>
+</header>

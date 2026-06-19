@@ -1,0 +1,226 @@
+/* ── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── PrimeNG theme overrides ─────────────────────────────────────────────── */
+:root {
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Theme palette (SaaS productivity) */
+  --primary: #000066;
+  --primary-hover: #00004D;
+  --primary-light: #DBEAFE;
+
+
+  --surface-ground: #F8FAFC;
+  --surface-card: #FFFFFF;
+  --surface-border: #E2E8F0;
+
+  --text-color: #1E293B;
+  --text-color-secondary: #64748B;
+
+  --header-bg-start: var(--primary);
+  --header-bg-end: var(--primary-hover);
+
+  /* Status colors */
+  --status-pending: #F59E0B;
+  --status-in-progress: #2563EB;
+  --status-completed: #10B981;
+  --status-high-priority: #EF4444;
+
+  --radius: 8px;
+  --border-radius: var(--radius);
+}
+
+/* ── Dark Mode ────────────────────────────────────────────────────────────── */
+:root.dark-mode {
+  --surface-ground: #0f172a;
+  --surface-card: #1e293b;
+  --surface-border: #334155;
+  --text-color: #f1f5f9;
+  --text-color-secondary: #94a3b8;
+
+  /* Keep primary palette in dark mode for brand consistency */
+  --primary: #000066;
+  --primary-hover: #00004D;
+  --primary-light: #DBEAFE;
+
+  --header-bg-start: #00004D;
+  --header-bg-end: #000066;
+
+
+  /* Status colors in dark mode */
+  --status-pending: #F59E0B;
+  --status-in-progress: #2563EB;
+  --status-completed: #10B981;
+  --status-high-priority: #EF4444;
+
+
+  /* PrimeNG dark overrides */
+  .p-inputtext,
+  .p-dropdown,
+  .p-calendar .p-inputtext {
+    background: #1e293b !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+  }
+
+  .p-dropdown-panel,
+  .p-datepicker {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f1f5f9 !important;
+  }
+
+  .p-dropdown-item, .p-datepicker td span {
+    color: #f1f5f9 !important;
+    &:hover { background: #334155 !important; }
+  }
+
+  .p-dialog { background: #1e293b !important; }
+  .p-dialog-content { background: #1e293b !important; }
+
+  .p-tag { border: 1px solid rgba(255,255,255,0.1); }
+}
+
+/* ── Base reset ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--surface-ground);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-family); }
+
+/* Focus outline for keyboard accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary, #2563EB);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* PrimeNG tweaks */
+.p-button { font-family: var(--font-family) !important; }
+.p-inputtext { font-family: var(--font-family) !important; }
+
+.p-dropdown-label { font-family: var(--font-family) !important; }
+
+/* ── PrimeNG brand overrides (hover/focus/active) ───────────────────── */
+:root.dark-mode {
+}
+
+/* Focus outlines */
+.p-inputtext:focus,
+.p-inputtext:focus-visible,
+.p-inputtext.p-filled:focus,
+.p-dropdown:focus,
+.p-dropdown-panel .p-dropdown-item:focus,
+.p-calendar .p-inputtext:focus {
+  box-shadow: 0 0 0 2px rgba(0, 0, 102, 0.25) !important;
+  border-color: var(--primary, #000066) !important;
+}
+
+:root.dark-mode .p-inputtext:focus,
+:root.dark-mode .p-inputtext:focus-visible,
+:root.dark-mode .p-dropdown:focus,
+:root.dark-mode .p-calendar .p-inputtext:focus {
+  box-shadow: 0 0 0 2px rgba(0, 0, 77, 0.35) !important;
+  border-color: var(--primary-hover, #00004D) !important;
+}
+
+/* Dropdown */
+.p-dropdown:not(.p-disabled).p-focus .p-dropdown-label,
+.p-dropdown-panel .p-dropdown-item.p-highlight,
+.p-dropdown-panel .p-dropdown-item.p-focus {
+  background: rgba(0, 0, 102, 0.12) !important;
+  color: var(--primary, #000066) !important;
+}
+
+.p-dropdown-panel .p-dropdown-item:hover {
+  background: rgba(0, 0, 102, 0.08) !important;
+  color: var(--primary, #000066) !important;
+}
+
+:root.dark-mode .p-dropdown-panel .p-dropdown-item.p-highlight,
+:root.dark-mode .p-dropdown-panel .p-dropdown-item.p-focus {
+  background: rgba(0, 0, 77, 0.25) !important;
+  color: var(--primary-hover, #00004D) !important;
+}
+
+:root.dark-mode .p-dropdown-panel .p-dropdown-item:hover {
+  background: rgba(0, 0, 77, 0.18) !important;
+  color: var(--primary-hover, #00004D) !important;
+}
+
+/* Paginator */
+.task-paginator .p-paginator-page.p-highlight,
+.task-paginator .p-paginator-page.p-focus {
+  background: var(--primary, #000066) !important;
+  border-color: var(--primary, #000066) !important;
+  color: #fff !important;
+}
+
+.task-paginator .p-paginator-page:hover,
+.task-paginator .p-paginator-first:hover,
+.task-paginator .p-paginator-prev:hover,
+.task-paginator .p-paginator-next:hover,
+.task-paginator .p-paginator-last:hover {
+  border-color: var(--primary-hover, #00004D) !important;
+  color: var(--primary-hover, #00004D) !important;
+}
+
+/* Calendar */
+.p-calendar .p-datepicker-trigger,
+.p-calendar .p-input-icon-left .p-inputtext {
+  color: var(--primary, #000066) !important;
+}
+
+.p-datepicker .p-datepicker-header {
+  background: linear-gradient(135deg, var(--primary, #000066), var(--primary-hover, #00004D)) !important;
+}
+
+.p-datepicker td span.p-highlight {
+  background: var(--primary, #000066) !important;
+  border-color: var(--primary, #000066) !important;
+}
+
+.p-datepicker td span:hover {
+  background: rgba(0, 0, 102, 0.12) !important;
+  color: var(--primary, #000066) !important;
+}
+
+:root.dark-mode .p-datepicker td span:hover {
+  background: rgba(0, 0, 77, 0.25) !important;
+  color: var(--primary-hover, #00004D) !important;
+}
+
+/* Icons in PrimeNG buttons (calendar trigger/clear/etc.) */
+.p-button.p-button-text:focus-visible,
+.p-button.p-button-text:focus,
+.p-button:focus-visible {
+  outline: 2px solid var(--primary, #000066) !important;
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+

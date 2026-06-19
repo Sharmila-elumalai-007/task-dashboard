@@ -1,0 +1,104 @@
+<!-- Floating button (hidden by default; header button is the default entry) -->
+<div class="fab-hidden">
+<button
+
+  class="chat-fab"
+  (click)="toggle()"
+  (pointerdown)="onFabPointerDown($event)"
+  (pointermove)="onFabPointerMove($event)"
+  (pointerup)="onFabPointerUp()"
+  (pointercancel)="onFabPointerUp()"
+  [ngStyle]="{ left: chatPosLeft + 'px', top: chatPosTop + 'px' }"
+  [attr.aria-expanded]="isOpen"
+  aria-label="Toggle AI assistant"
+  aria-controls="chat-panel"
+>
+  <i class="pi pi-comment" aria-hidden="true"></i>
+  <span class="fab-label" *ngIf="!isOpen">AI Assistant</span>
+</button>
+
+<!-- Chat panel -->
+<div
+  id="chat-panel"
+  class="chat-panel"
+  [class.open]="isOpen"
+  [ngStyle]="{ left: (chatPosLeft + 'px'), top: (chatPosTop + 56 + 'px') }"
+  role="dialog"
+  aria-label="AI Task Assistant"
+  aria-modal="true"
+>
+
+  <div class="chat-header">
+    <div class="chat-avatar" aria-hidden="true">
+      <i class="pi pi-sparkles"></i>
+    </div>
+    <div class="chat-info">
+      <div class="chat-name">Task AI</div>
+      <div class="chat-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Online</span>
+      </div>
+    </div>
+    <button
+      pButton pRipple
+      icon="pi pi-times"
+      class="p-button-rounded p-button-text close-btn"
+      (click)="toggle()"
+      aria-label="Close chat"
+    ></button>
+  </div>
+
+  <div class="chat-messages" role="log" aria-live="polite" aria-label="Chat messages">
+    <div
+      *ngFor="let msg of messages"
+      class="message"
+      [class.user]="msg.role === 'user'"
+      [class.assistant]="msg.role === 'assistant'"
+    >
+      <div class="bubble" [innerHTML]="msg.content.replace('\n', '<br>')"></div>
+      <time class="msg-time" [dateTime]="msg.timestamp.toISOString()">
+        {{ msg.timestamp | date:'shortTime' }}
+      </time>
+    </div>
+
+    <div *ngIf="isLoading" class="message assistant" aria-label="Assistant is typing">
+      <div class="bubble typing">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div #messagesEnd></div>
+  </div>
+
+  <!-- Suggestions -->
+  <div class="suggestions" *ngIf="messages.length === 1 && !isLoading">
+    <button
+      *ngFor="let s of suggestions"
+      class="suggestion-chip"
+      (click)="sendSuggestion(s)"
+    >{{ s }}</button>
+  </div>
+
+  <div class="chat-input-row">
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="input"
+      (keydown)="onKeydown($event)"
+      placeholder="Ask about your tasks..."
+      class="chat-input"
+      [disabled]="isLoading"
+      aria-label="Message input"
+    />
+    <button
+      pButton pRipple
+      icon="pi pi-send"
+      class="send-btn"
+      (click)="send()"
+      [disabled]="!input.trim() || isLoading"
+      aria-label="Send message"
+    ></button>
+  </div>
+</div>
+</div>
+

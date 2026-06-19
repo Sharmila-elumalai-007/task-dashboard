@@ -1,0 +1,41 @@
+<section class="stats-grid" role="region" aria-label="Task statistics">
+  <div class="stat-card total" role="img" [attr.aria-label]="total + ' total tasks'">
+    <div class="stat-icon"><i class="pi pi-list" aria-hidden="true"></i></div>
+    <div class="stat-body">
+      <div class="stat-value">{{ total }}</div>
+      <div class="stat-label">Total Tasks</div>
+    </div>
+  </div>
+
+  <div class="stat-card pending" role="img" [attr.aria-label]="pending + ' pending tasks'">
+    <div class="stat-icon"><i class="pi pi-clock" aria-hidden="true"></i></div>
+    <div class="stat-body">
+      <div class="stat-value">{{ pending }}</div>
+      <div class="stat-label">Pending</div>
+    </div>
+  </div>
+
+  <div class="stat-card in-progress" role="img" [attr.aria-label]="inProgress + ' tasks in progress'">
+    <div class="stat-icon"><i class="pi pi-sync" aria-hidden="true"></i></div>
+    <div class="stat-body">
+      <div class="stat-value">{{ inProgress }}</div>
+      <div class="stat-label">In Progress</div>
+    </div>
+  </div>
+
+  <div class="stat-card completed" role="img" [attr.aria-label]="completed + ' completed tasks'">
+    <div class="stat-icon"><i class="pi pi-check-circle" aria-hidden="true"></i></div>
+    <div class="stat-body">
+      <div class="stat-value">{{ completed }}</div>
+      <div class="stat-label">Completed</div>
+    </div>
+  </div>
+
+  <div class="stat-card overdue" role="img" [attr.aria-label]="overdue + ' overdue tasks'">
+    <div class="stat-icon"><i class="pi pi-exclamation-triangle" aria-hidden="true"></i></div>
+    <div class="stat-body">
+      <div class="stat-value">{{ overdue }}</div>
+      <div class="stat-label">Overdue</div>
+    </div>
+  </div>
+</section>

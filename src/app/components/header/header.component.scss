@@ -1,0 +1,112 @@
+.app-header {
+  background: linear-gradient(135deg, var(--primary, #2563EB) 0%, var(--primary-hover, #1D4ED8) 100%);
+  color: white;
+
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .brand-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+
+    i {
+      font-size: 1.4rem;
+      color: white;
+    }
+  }
+
+  .brand-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 0.15rem;
+  }
+
+  .brand-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: white;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .brand-subtitle {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+.header-chat-btn {
+    color: white !important;
+    border: 1px solid rgba(255,255,255,0.35) !important;
+    width: 40px !important;
+    height: 40px !important;
+
+    .p-button-icon {
+      color: white !important;
+    }
+
+    &:hover {
+      background: rgba(255,255,255,0.15) !important;
+    }
+  }
+
+  .theme-toggle {
+    color: white !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    width: 40px !important;
+    height: 40px !important;
+
+    &:hover {
+      background: rgba(255,255,255,0.15) !important;
+    }
+  }
+}
+
+
+@media (max-width: 576px) {
+  .app-header {
+    padding: 1rem;
+
+    .brand-icon { display: none; }
+    .brand-title { font-size: 1.2rem; }
+  }
+}

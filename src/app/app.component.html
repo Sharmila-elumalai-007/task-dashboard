@@ -1,0 +1,56 @@
+<div class="app-shell" [class.dark]="isDark$ | async">
+  <app-header></app-header>
+
+  <main class="main-content" role="main" id="main">
+    <div class="page-container">
+      <!-- Stats row -->
+      <app-task-stats [tasks]="(tasks$ | async) ?? []"></app-task-stats>
+
+      <!-- Two-column layout: form + task list -->
+      <div class="dashboard-layout">
+        <!-- Left: Add Task Form -->
+        <aside class="form-col" aria-label="Add task panel">
+          <app-task-form
+            [editTask]="null"
+            (taskSaved)="onTaskSaved($event)"
+          ></app-task-form>
+        </aside>
+
+        <!-- Right: Task List -->
+        <div class="list-col">
+          <app-task-list
+            [tasks]="(tasks$ | async) ?? []"
+            (editTask)="onEditTask($event)"
+            (deleteTask)="onDeleteTask($event)"
+          ></app-task-list>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Edit Task Dialog -->
+  <p-dialog
+    header="Edit Task"
+    [(visible)]="editDialogVisible"
+    [modal]="true"
+    [closable]="true"
+    [draggable]="false"
+    [resizable]="false"
+    styleClass="edit-dialog"
+    (onHide)="closeEditDialog()"
+    aria-label="Edit task dialog"
+  >
+    <app-task-form
+      [editTask]="editingTask"
+      (taskSaved)="onTaskSaved($event)"
+      (cancelled)="closeEditDialog()"
+    ></app-task-form>
+  </p-dialog>
+
+  <!-- AI Chatbot -->
+  <app-ai-chatbot></app-ai-chatbot>
+
+  <!-- PrimeNG overlays -->
+  <p-confirmDialog></p-confirmDialog>
+  <p-toast position="bottom-right"></p-toast>
+</div>

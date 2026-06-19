@@ -1,0 +1,125 @@
+<div class="task-form-panel" role="form" [attr.aria-label]="isEdit ? 'Edit task' : 'Add new task'">
+  <div class="form-header">
+    <div class="form-icon" aria-hidden="true">
+      <i [class]="isEdit ? 'pi pi-pencil' : 'pi pi-plus'"></i>
+    </div>
+    <div>
+      <h2 class="form-title">{{ isEdit ? 'Edit Task' : 'Add Task' }}</h2>
+      <p class="form-subtitle">{{ isEdit ? 'Update task details' : 'Create a new task for your team' }}</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <!-- Title -->
+    <div class="field">
+      <label for="title" class="field-label">Title <span class="required" aria-hidden="true">*</span></label>
+      <input
+        id="title"
+        type="text"
+        pInputText
+        formControlName="title"
+        placeholder="What needs to be done?"
+        class="w-full"
+        [class.ng-invalid]="f['title'].touched && f['title'].invalid"
+        aria-required="true"
+        [attr.aria-invalid]="f['title'].touched && f['title'].invalid"
+        aria-describedby="title-error"
+      />
+      <small id="title-error" class="field-error" role="alert" *ngIf="fieldError('title')">
+        {{ fieldError('title') }}
+      </small>
+    </div>
+
+    <!-- Status -->
+    <div class="field">
+      <label for="status" class="field-label">Status <span class="required" aria-hidden="true">*</span></label>
+      <p-dropdown
+        inputId="status"
+        [options]="statusOptions"
+        formControlName="status"
+        placeholder="Select status"
+        styleClass="w-full"
+        aria-required="true"
+      ></p-dropdown>
+      <small class="field-error" role="alert" *ngIf="fieldError('status')">{{ fieldError('status') }}</small>
+    </div>
+
+    <!-- Priority -->
+    <div class="field">
+      <label for="priority" class="field-label">Priority <span class="required" aria-hidden="true">*</span></label>
+      <p-dropdown
+        inputId="priority"
+        [options]="priorityOptions"
+        formControlName="priority"
+        placeholder="Select priority"
+        styleClass="w-full"
+      ></p-dropdown>
+      <small class="field-error" role="alert" *ngIf="fieldError('priority')">{{ fieldError('priority') }}</small>
+    </div>
+
+    <!-- Assignee -->
+    <div class="field">
+      <label for="assignee" class="field-label">Assignee <span class="required" aria-hidden="true">*</span></label>
+      <input
+        id="assignee"
+        type="text"
+        pInputText
+        formControlName="assignee"
+        placeholder="Team member name"
+        class="w-full"
+        [class.ng-invalid]="f['assignee'].touched && f['assignee'].invalid"
+        aria-required="true"
+        aria-describedby="assignee-error"
+      />
+      <small id="assignee-error" class="field-error" role="alert" *ngIf="fieldError('assignee')">
+        {{ fieldError('assignee') }}
+      </small>
+    </div>
+
+    <!-- Due Date -->
+    <div class="field">
+      <label for="dueDate" class="field-label">Due Date <span class="required" aria-hidden="true">*</span></label>
+      <p-calendar
+        inputId="dueDate"
+        formControlName="dueDate"
+        dateFormat="yy-mm-dd"
+        styleClass="w-full"
+        [showIcon]="true"
+        placeholder="MM/DD/YYYY"
+        aria-required="true"
+      ></p-calendar>
+      <small class="field-error" role="alert" *ngIf="fieldError('dueDate')">{{ fieldError('dueDate') }}</small>
+    </div>
+
+    <!-- Description (optional) -->
+    <div class="field">
+      <label for="description" class="field-label">Description <span class="optional">(optional)</span></label>
+      <textarea
+        id="description"
+        pInputTextarea
+        formControlName="description"
+        placeholder="Add more details..."
+        [autoResize]="true"
+        rows="2"
+        class="w-full"
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button
+        pButton pRipple type="submit"
+        [label]="isEdit ? 'Update Task' : 'Add Task'"
+        [icon]="isEdit ? 'pi pi-check' : 'pi pi-plus'"
+        class="p-button-primary submit-btn"
+      ></button>
+      <button
+        *ngIf="isEdit"
+        pButton pRipple type="button"
+        label="Cancel"
+        icon="pi pi-times"
+        class="p-button-text p-button-secondary"
+        (click)="cancelled.emit()"
+      ></button>
+    </div>
+  </form>
+</div>

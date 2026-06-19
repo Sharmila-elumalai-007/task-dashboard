@@ -1,0 +1,64 @@
+.app-shell {
+  min-height: 100vh;
+  background: var(--surface-ground, #f8fafc);
+  transition: background 0.3s, color 0.3s;
+}
+
+.main-content {
+  padding: 2rem 1.5rem;
+
+  @media (max-width: 640px) {
+    padding: 1rem;
+  }
+}
+
+.page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+
+    .form-col { order: 2; }
+    .list-col { order: 1; }
+  }
+}
+
+::ng-deep {
+  .edit-dialog {
+    width: 480px;
+    max-width: calc(100vw - 2rem);
+
+    .p-dialog-header {
+      background: linear-gradient(135deg, var(--primary, #000066), var(--primary-hover, #00004D));
+      color: white;
+      border-radius: 12px 12px 0 0;
+
+      .p-dialog-header-icon { color: white !important; }
+    }
+
+    .p-dialog-content {
+      padding: 0;
+      app-task-form .task-form-panel {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
+  }
+
+  .p-confirm-dialog .p-dialog-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .p-toast { z-index: 9999 !important; }
+}
