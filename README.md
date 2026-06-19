@@ -179,6 +179,7 @@ TaskService
 - Review accessibility checklist
 
 **Dribble ai** was used to choose the template:
+**openrouter.ai** was used to get the api models:
 
 All architecture decisions, component structure, service design, and feature choices were made by the developer. Code was reviewed and adapted throughout.
 
