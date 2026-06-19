@@ -2,6 +2,7 @@
 
 Responsive, accessible task management UI built with **Angular 17** and **PrimeNG** featuring AI-powered task assistance, dark mode, local persistence, and full CRUD operations.
 
+🔗 **Live Demo:** [https://task-dashboard-3azg.vercel.app/](https://task-dashboard-3azg.vercel.app/)
 
 ---
 
@@ -72,15 +73,28 @@ ng build --configuration production
 
 ---
 
-## 🤖 AI Chatbot
+## 🤖 AI Chatbot — Setup Note
 
-The AI assistant uses **Claude (claude-sonnet-4-6)** via the Anthropic API to:
-- Search tasks naturally: *"Show me high priority tasks"*
-- Find overdue work: *"What tasks are overdue?"*
-- Summarize status: *"Summarize pending tasks"*
-- Team insights: *"Who has the most tasks?"*
+The AI assistant is built using the **Anthropic Claude API (claude-sonnet-4-6)** and is fully functional when an API key is configured. It supports natural language queries like:
 
-**Note:** The chatbot sends your current task list as context with each query. No task data is stored externally. For production, always proxy the API call through a backend to protect your API key.
+- *"Show me high priority tasks"*
+- *"What tasks are overdue?"*
+- *"Summarize pending tasks"*
+- *"Who has the most tasks?"*
+
+### To enable locally:
+Open `src/environments/environment.ts` and replace the placeholder:
+```ts
+export const environment = {
+  production: false,
+  anthropicApiKey: 'sk-ant-your-actual-key-here'
+};
+```
+
+### Why it's disabled on the live demo:
+The live Vercel deployment does not have an API key configured, as embedding secret keys in a client-side app is **not safe for production**. In a real-world scenario, this would be routed through a **backend serverless function** (e.g., a Vercel API route or Node.js proxy) to keep the key secure server-side.
+
+> The chatbot UI, message flow, suggestion chips, typing indicator, and error handling are all fully implemented and visible. Only the API response is inactive without a key.
 
 ---
 
@@ -179,7 +193,7 @@ TaskService
 - Review accessibility checklist
 
 **Dribble ai** was used to choose the template:
-**openrouter.ai** was used to get the api models:
+**openrouter.ai** was used to get the api , models:
 
 All architecture decisions, component structure, service design, and feature choices were made by the developer. Code was reviewed and adapted throughout.
 
