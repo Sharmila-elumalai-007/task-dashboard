@@ -1,6 +1,6 @@
 # 📋 Task Dashboard
 
-Responsive, accessible task management UI built with **Angular 17** and **PrimeNG** featuring AI-powered task assistance, dark mode, local persistence, and full CRUD operations.
+Responsive, accessible task management UI built with **Angular 17+ ** and **PrimeNG** featuring AI-powered task assistance, dark mode, local persistence, and full CRUD operations.
 
 🔗 **Live Demo:** [https://task-dashboard-3azg.vercel.app/](https://task-dashboard-3azg.vercel.app/)
 
