@@ -88,7 +88,7 @@ Open `src/environments/environment.ts` and replace the placeholder:
 ```ts
 export const environment = {
   production: false,
-  anthropicApiKey: 'sk-ant-your-actual-key-here'
+  apiKey: 'actual-key-here'
 };
 ```
 
